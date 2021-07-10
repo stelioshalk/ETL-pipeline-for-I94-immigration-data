@@ -30,16 +30,21 @@ Airport codes from around the world. Downloaded from public domain source http:/
 The definition of the dataset is described here: https://ourairports.com/help/data-dictionary.html
 
 ## Additional data
-A data dictionary file for immigration was provided which was slitted to the follwing files:
+A data dictionary file for immigration was provided which was splitted to the follwing files:
 - i94cntyl.txt
 - i94prtl.txt 
 - i94addrl.txt
 - i94model.txt
 - I94VISA.txt
+The above files were converted to csv files. The biggest ones were converted by calling the generate_csv.py script.
 
 # Architecture of the solution
+The solution initially processes the raw datasets,and stores them as parquet files in Amazon S3.Some basic filtering gets applied before loading the data as parquet files.
+After storing the files in S3, the parquet files get linked as external tables in an Amazon redshift staging database. Finally, the external staging tables are used for populating the tables of the model.
+
 
 # Data cleaning
+the follwing data cleansing has been applied. Some of the cleansing was taking place during extraction and loading the data to the staging parquet files in S3, and some other filtering has been applied while loading the fact and dimension tables of the model.
 
 1. Filter temperature data to only use data for United States.
 2. Remove irregular ports from I94 data.
