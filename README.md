@@ -40,7 +40,7 @@ The above files were converted to csv files. The biggest ones were converted by 
 
 # Architecture of the solution
 The solution initially processes the raw datasets,and stores them as parquet files in Amazon S3.Some basic filtering gets applied before loading the data as parquet files. Apache spark is used for filtering and loading the data to S3.
-After storing the files in S3, the parquet files get linked as external tables in an Amazon redshift staging database. Finally, the external staging tables are used for populating the tables of the model.
+After storing the files in S3, the parquet files get linked as external tables in an Amazon redshift staging database. a different schema is used for the staging tables called "staging". Finally, the external staging tables are used for populating the tables of the model.
 
 The diagram below reflects the main data flow of the solution:
 <img src="/images/model.jpg">
@@ -64,4 +64,8 @@ the follwing data cleansing has been applied. Some of the cleansing was taking p
 2. Remove irregular ports from I94 data.
 3. Drop rows with missing IATA codes from I94 data.
 
-
+# How to run the project.
+1. You need to create an AWS account, create an S3 bucket and a Redshift cluster. Congiure the dl.cfg file with all required access key,secret plus the redshift connection details. Additionally you need an IAM_ROLE attached to your redshift cluster. The role should have the AWSGlueConsoleFullAccess policy which is required for linking the parquet files as external tables.
+2. You can run once the generate_csv.py, which will convert three txt files to csv files.
+3. Run the new_etl.py
+4. Go to your amazon redshift cluster to view your staging and fact/dimesion tables 
