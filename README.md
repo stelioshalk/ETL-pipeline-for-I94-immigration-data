@@ -39,8 +39,22 @@ A data dictionary file for immigration was provided which was splitted to the fo
 The above files were converted to csv files. The biggest ones were converted by calling the generate_csv.py script.
 
 # Architecture of the solution
-The solution initially processes the raw datasets,and stores them as parquet files in Amazon S3.Some basic filtering gets applied before loading the data as parquet files.
+The solution initially processes the raw datasets,and stores them as parquet files in Amazon S3.Some basic filtering gets applied before loading the data as parquet files. Apache spark is used for filtering and loading the data to S3.
 After storing the files in S3, the parquet files get linked as external tables in an Amazon redshift staging database. Finally, the external staging tables are used for populating the tables of the model.
+
+The diagram below reflects the main data flow of the solution:
+<img src="/images/model.jpg">
+
+This is the structure of the external tables that are linked with the parquet files stored in an S3 bucket:
+<img src="/images/staging.jpg">
+
+
+<br><br>
+Those are the fact and dimension tables of the model.
+<img src="/images/model-tables.jpg">
+
+
+
 
 
 # Data cleaning
