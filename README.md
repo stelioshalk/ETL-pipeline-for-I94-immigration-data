@@ -69,3 +69,11 @@ the follwing data cleansing has been applied. Some of the cleansing was taking p
 2. You can run once the generate_csv.py, which will convert three txt files to csv files.
 3. Run the new_etl.py
 4. Go to your amazon redshift cluster to view your staging and fact/dimesion tables 
+
+# Addressing other future scenarios
+1. Significant data increase. 
+The technologies that are used in the solution can scale up and handle a any size of data. Amazon S3 can store massive amounts of data without issues. Additionally, Amazon redshift can scale up. Amazon Redshift allows you to add or remove nodes in an Amazon Redshift cluster increasing performance and storage depending on the requirements.
+2. User increase 
+Amazon redshift can scale up and handle 100s of users accessing the database. 
+3. Scheduling the process to run specific time e.g 7.00am every day
+This can be achieved by either scheduling the python script to run as a schedule task or using other tools such as Apache airflow which provide high level of customization depending on the requirements. 
