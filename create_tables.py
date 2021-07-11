@@ -17,25 +17,25 @@ def create_tables(cur, conn):
         conn.commit()
 
 def create_staging_tables(cur, conn):
-    """Creates all tables"""
+    """Creates all staging tables"""
     for query in create_staging_tables_queries:
         cur.execute(query)
         conn.commit()
 
 def drop_staging_tables(cur, conn):
-    """Creates all tables"""
+    """drops all staging tables"""
     for query in drop_staging_tables_queries:
         cur.execute(query)
         conn.commit()      
 
 def load_data(cur, conn):
-    """Creates all tables"""
+    """loads with data from staging tables tables"""
     for query in load_model_data_queries:
         cur.execute(query)
         conn.commit()            
 
 def quality_check(cur, conn):
-    """Creates all tables"""
+    """Quality checks."""
     for query in data_quality_checks_queries:
         cur.execute(query)
         result=cur.fetchone()
