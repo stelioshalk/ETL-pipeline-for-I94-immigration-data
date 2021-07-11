@@ -228,10 +228,14 @@ insert into immigrations(cicid,i94yr,i94mon,i94cit,i94res,i94port,arrdate,i94mod
 (Select cicid,i94yr,i94mon,i94cit,i94res,i94port,arrdate,i94mode,i94addr,depdate,i94bir,i94visa,visapost
 from staging.staging_immigration);"""
 
+data_quality_check1_sql="""select count(*) from airport;"""
+data_quality_check2_sql="""select count(*) from immigrations;"""
+
 drop_table_queries =[immigrations_table_drop,airport_table_drop,transportation_mode_table_drop,country_drop,state_drop,visa_status_drop]
 create_table_queries=[immigrations_table_create,airport_table_create,transportation_mode_table_create,country_table_create,state_table_create,visa_status_table_create]
 create_staging_tables_queries=[Create_externalSchemaSQL,stagingDemographicsSQL,staging_i94prtlSQL,staging_i94modelSQL,staging_airport_codesSQL,staging_i94visaSQL,staging_i94cntylSQL,staging_GlobalLandTemperaturesByStatelSQL,staging_i94addrlSQL,staging_immigrationSQL]
 drop_staging_tables_queries=[Create_externalSchemaSQL,drop_staging_demographics,drop_staging_i94model,drop_staging_i94prtl,drop_staging_airport_codes,drop_staging_i94visa,drop_staging_i94cntyl,drop_staging_GlobalLandTemperaturesByState,drop_staging_i94addrl,drop_staging_immigration]
 
 load_model_data_queries=[load_country_sql,load_transp_mode_sql,load_immigrations_sql,load_state_sql,load_airport_sql,load_visa_status]
+data_quality_checks_queries=[data_quality_check1_sql,data_quality_check2_sql]
 
