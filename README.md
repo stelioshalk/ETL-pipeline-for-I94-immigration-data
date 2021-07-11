@@ -64,6 +64,9 @@ the follwing data cleansing has been applied. Some of the cleansing was taking p
 2. Remove irregular ports from I94 data.
 3. Drop rows with missing IATA codes from I94 data.
 
+# Quality checks
+At the end of the etl, there two data quality checks. The script checks the number of rows in two tables and prints a warning message if the tables have zero rows.
+
 # How to run the project.
 1. You need to create an AWS account, create an S3 bucket and a Redshift cluster. Congiure the dl.cfg file with all required access key,secret plus the redshift connection details. Additionally you need an IAM_ROLE attached to your redshift cluster. The role should have the AWSGlueConsoleFullAccess policy which is required for linking the parquet files as external tables.
 2. You can run once the generate_csv.py, which will convert three txt files to csv files.
