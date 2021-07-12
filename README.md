@@ -1,8 +1,13 @@
 # ETL-pipeline-for-I94-immigration-data
 
 # Project description
-This project is to design a data lake ETL solution that automates data cleansing and processing the I-94 Immigration Dataset. Additionaly, the the Global Temperature Dataset and U.S. City Demographic Dataset are used. 
+This project is to design a data lake ETL solution that automates data cleansing and processing the I-94 Immigration Dataset. Additionaly, the the Global Temperature Dataset and U.S. City Demographic Dataset are used.  
+The data model could be used for extracting useful information such as:
+- Which city was most visited in a specific month
+- From which countries travelers originate?
+- The correlation between country of origin and visa type.
 
+ 
 # The Data sets
 ## I-94 Dataset
 For decades, U.S. immigration officers issued the I-94 Form (Arrival/Departure Record) to foreign visitors (e.g., business visitors, tourists and foreign students) who lawfully entered the United States. The I-94 was a small white paper form that a foreign visitor received from cabin crews on arrival flights and from U.S. Customs and Border Protection at the time of entry into the United States. It listed the traveler's immigration category, port of entry, data of entry into the United States, status expiration date and had a unique 11-digit identifying number assigned to it. Its purpose was to record the traveler's lawful admission to the United States.
