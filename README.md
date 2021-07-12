@@ -1,7 +1,8 @@
 # ETL-pipeline-for-I94-immigration-data
 
 # Project description
-This project is to design a data lake ETL solution that automates data cleansing and processing the I-94 Immigration Dataset. Additionaly, the the Global Temperature Dataset and U.S. City Demographic Dataset are used.  
+This project is to design a data lake ETL solution that automates data cleansing and processing the I-94 Immigration Dataset. Additionaly, the the Global Temperature Dataset and U.S. City Demographic Dataset are used. A star schema was selected for the final data model. 
+
 The data model could be used for extracting useful information such as:
 - Which city was most visited in a specific month
 - From which countries travelers originate?
@@ -43,7 +44,7 @@ A data dictionary file for immigration was provided which was splitted to the fo
 - I94VISA.txt
 The above files were converted to csv files. The biggest ones were converted by calling the generate_csv.py script.
 
-# Architecture of the solution
+# Architecture of the solution  
 The solution initially processes the raw datasets,and stores them as parquet files in Amazon S3.Some basic filtering gets applied before loading the data as parquet files. Apache spark is used for filtering and loading the data to S3.
 After storing the files in S3, the parquet files get linked as external tables in an Amazon redshift staging database. a different schema is used for the staging tables called "staging". Finally, the external staging tables are used for populating the tables of the model.
 
@@ -55,7 +56,14 @@ This is the structure of the external tables that are linked with the parquet fi
 
 
 <br><br>
-Those are the fact and dimension tables of the model.
+## The data model.
+A star schema was selected for the follwing reasons:  
+- Tables can be denormalised
+- Simplifies queries
+- fast aggregations. Calculations and data clustering can be easily performed.  
+
+The diagram below displays the fact and dimension tables of the model:
+
 <img src="/images/model-tables.jpg">
 
 
