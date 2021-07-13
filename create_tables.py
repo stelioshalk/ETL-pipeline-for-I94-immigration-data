@@ -1,6 +1,6 @@
 import configparser
 import psycopg2
-from sql_queries import create_table_queries, drop_table_queries,drop_staging_tables_queries,create_staging_tables_queries,load_model_data_queries,data_quality_checks_queries
+from sql_queries import create_table_queries, drop_table_queries,drop_staging_tables_queries,create_staging_tables_queries,load_model_data_queries,data_quality_checks_queries,data_quality_checks2_queries
 
 
 def drop_tables(cur, conn):
@@ -41,7 +41,15 @@ def quality_check(cur, conn):
         result=cur.fetchone()
         if result[0]==0:
             print("Number of rows:0. Quality check failed for query: {}".format(query))
-                
+
+def quality_check2(cur, conn):
+    """Quality checks."""
+    for query in data_quality_checks2_queries:
+        cur.execute(query)
+        result=cur.fetchone()
+        if result[0]>0:
+            print("Unexpected records found!. Quality check failed for query: {}".format(query))
+            
     
         
 def main():
@@ -55,12 +63,13 @@ def main():
     conn.set_isolation_level(0) #set the isolation level to 0 or else ddl commands fails such as the create external table 
     cur = conn.cursor()
     
-    drop_staging_tables(cur, conn)
-    create_staging_tables(cur, conn)
-    drop_tables(cur, conn)
-    create_tables(cur, conn)
-    load_data(cur, conn)
+    #drop_staging_tables(cur, conn)
+    #create_staging_tables(cur, conn)
+    #drop_tables(cur, conn)
+    #create_tables(cur, conn)
+    #load_data(cur, conn)
     quality_check(cur,conn)
+    quality_check2(cur,conn)
     conn.close()
 
 

@@ -230,6 +230,8 @@ from staging.staging_immigration);"""
 
 data_quality_check1_sql="""select count(*) from airport;"""
 data_quality_check2_sql="""select count(*) from immigrations;"""
+data_quality_check3_sql="""select count(*) from airport where airport_name is null;"""
+data_quality_check4_sql="""select count(*) from immigrations  where i94port is null;"""
 
 drop_table_queries =[immigrations_table_drop,airport_table_drop,transportation_mode_table_drop,country_drop,state_drop,visa_status_drop]
 create_table_queries=[immigrations_table_create,airport_table_create,transportation_mode_table_create,country_table_create,state_table_create,visa_status_table_create]
@@ -238,4 +240,5 @@ drop_staging_tables_queries=[Create_externalSchemaSQL,drop_staging_demographics,
 
 load_model_data_queries=[load_country_sql,load_transp_mode_sql,load_immigrations_sql,load_state_sql,load_airport_sql,load_visa_status]
 data_quality_checks_queries=[data_quality_check1_sql,data_quality_check2_sql]
+data_quality_checks2_queries=[data_quality_check3_sql,data_quality_check4_sql]
 
