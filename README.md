@@ -8,6 +8,7 @@ The data model could be used for extracting useful information such as:
 - From which countries travelers originate?
 - The correlation between country of origin and visa type.
 
+The pipeline could be automated by calling the new_etl.py python script. The script will create all staging and model tables and load them with data after applying appropriate filters. Configuration settings have to be saved in the dl.cfg file.
  
 # The Data sets
 ## I-94 Dataset
@@ -78,7 +79,8 @@ the follwing data cleansing has been applied. Some of the cleansing was taking p
 3. Drop rows with missing IATA codes from I94 data.
 
 # Quality checks
-At the end of the etl, there two data quality checks. The script checks the number of rows in two tables and prints a warning message if the tables have zero rows.
+At the end of the etl, there four data quality checks. The script checks the number of rows in two tables and prints a warning message if the tables have zero rows.  
+In two other data quality checks, we check if there unexpected null values in two different tables.  
 
 # How to run the project.
 1. You need to create an AWS account, create an S3 bucket and a Redshift cluster. Congiure the dl.cfg file with all required access key,secret plus the redshift connection details. Additionally you need an IAM_ROLE attached to your redshift cluster. The role should have the AWSGlueConsoleFullAccess policy which is required for linking the parquet files as external tables.
